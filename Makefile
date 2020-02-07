@@ -9,7 +9,7 @@ AFLAGS	=	rcus
 RM		=	/bin/rm
 FORMAT	=	macho64
 FLAGS	=	-f$(FORMAT)
-SRCS	=	$(addprefix $(SRCDIR)/ft_, strlen.s)
+SRCS	=	$(addprefix $(SRCDIR)/ft_, strlen.s strcpy.s)
 OBJS	=	$(patsubst $(SRCDIR)/%.s, $(OBJDIR)/%.o, $(SRCS))
 TSTDIR	=	tests
 TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/, tests.c test_utils.c)
@@ -19,8 +19,8 @@ TSTCMD	=	./test
 all:			$(NAME)
 
 $(NAME):		$(OBJS)
-	@printf "%-3s $@ $<\n" AR
-	@$(AR) $(AFLAGS) $@ $<
+	@printf "%-3s $@ $(OBJS)\n" AR
+	@$(AR) $(AFLAGS) $@ $(OBJS)
 
 $(OBJDIR):
 	@printf "%-3s $@\n" MK
@@ -42,5 +42,5 @@ re:				fclean all
 
 test:			all $(TSTSRCS)
 	@printf "%-3s $(TSTSRCS)\n" CC
-	@$(CC) $(CFLAGS) $(TSTSRCS) -L. -lft -o test
+	@$(CC) $(CFLAGS) $(TSTSRCS) -I$(TSTINC) -L. -lft -o test
 	$(TSTCMD)
