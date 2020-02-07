@@ -14,6 +14,7 @@ OBJS	=	$(patsubst $(SRCDIR)/%.s, $(OBJDIR)/%.o, $(SRCS))
 TSTDIR	=	tests
 TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/, tests.c test_utils.c)
 TSTINC	=	$(TSTDIR)/includes
+TSTCMD	=	./test
 
 all:			$(NAME)
 
@@ -42,4 +43,4 @@ re:				fclean all
 test:			all $(TSTSRCS)
 	@printf "%-3s $(TSTSRCS)\n" CC
 	@$(CC) $(CFLAGS) $(TSTSRCS) -L. -lft -o test
-	./test
+	$(TSTCMD)
