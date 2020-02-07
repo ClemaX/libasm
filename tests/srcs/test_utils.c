@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/26 16:34:23 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 10:46:41 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 12:23:02 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -24,7 +24,7 @@
 #include <stdio.h>
 #include <string.h>
 
-int		diff_s(char *got, char *expected)
+int		diff_s(const char *got, const char *expected)
 {
 	int	diff;
 
