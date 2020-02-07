@@ -1,7 +1,7 @@
 section	.text
-global _ft_strlen
+global	_ft_strlen
 
-_ft_strlen:
+_ft_strlen:				; RDI
 	sub		rcx, rcx	; Clear RCX
 	not		rcx			; Set RCX to unsigned-max
 	sub		al, al		; Clear AL
