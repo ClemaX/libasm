@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/06 17:47:17 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 17:58:17 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 18:37:36 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,6 +19,7 @@
 size_t	ft_strlen(const char *rdi);
 char*	ft_strcpy(const char *rdi, const char *rsi);
 int		ft_strcmp(const char *rdi, const char *rsi);
+ssize_t	ft_write(int edi, const void *rsi, int rdx);
 
 int	test_ft_strlen(void)
 {
@@ -51,6 +52,18 @@ int	test_ft_strcmp(void)
 	return (!diff);
 }
 
+int	test_ft_write(void)
+{
+	static const int	len = 4;
+	static const char	*str = "Wow!";
+	int					diff = 0;
+
+	diff += diff_ssize(ft_write(1, str, len), write(1, str, len));
+	diff += diff_ssize(ft_write(1, str, -1), write(1, str, -1));
+	diff += diff_ssize(ft_write(-1, str, len), write(-1, str, len));
+	return (!diff);
+}
+
 int	main(void)
 {
 	static const int	fw = 9;
@@ -59,7 +72,7 @@ int	main(void)
 	err = 0;
 	err |= !run_test("ft_strlen", fw, &test_ft_strlen);
 	err |= !run_test("ft_strcpy", fw, &test_ft_strcpy);
-	while (!err)
-		err |= !run_test("ft_strcmp", fw, &test_ft_strcmp);
+	err |= !run_test("ft_strcmp", fw, &test_ft_strcmp);
+	err |= !run_test("ft_write", fw, &test_ft_write);
 	return (err);
 }

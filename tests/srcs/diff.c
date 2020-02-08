@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/07 17:30:53 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 17:33:55 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/08 18:23:59 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -52,6 +52,17 @@ int		diff_size(size_t got, size_t expected)
 	if (got != expected)
 	{
 		printf("%s: got: %zu, expected: %zu\n",
+			RED"DIFF"RESET, got, expected);
+		return (1);
+	}
+	return (0);
+}
+
+int		diff_ssize(ssize_t got, ssize_t expected)
+{
+	if (got != expected)
+	{
+		printf("%s: got: %zd, expected: %zd\n",
 			RED"DIFF"RESET, got, expected);
 		return (1);
 	}
