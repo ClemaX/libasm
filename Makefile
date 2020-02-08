@@ -8,11 +8,11 @@ AR		=	/usr/bin/ar
 AFLAGS	=	rcus
 RM		=	/bin/rm
 FORMAT	=	macho64
-FLAGS	=	-f$(FORMAT)
-SRCS	=	$(addprefix $(SRCDIR)/ft_, strlen.s strcpy.s)
+FLAGS	=	
+SRCS	=	$(addprefix $(SRCDIR)/ft_, strlen.s strcpy.s strcmp.s)
 OBJS	=	$(patsubst $(SRCDIR)/%.s, $(OBJDIR)/%.o, $(SRCS))
 TSTDIR	=	tests
-TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/, tests.c test_utils.c)
+TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/, tests.c test_utils.c diff.c rand.c)
 TSTINC	=	$(TSTDIR)/includes
 TSTCMD	=	./test
 
@@ -28,7 +28,7 @@ $(OBJDIR):
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.s $(OBJDIR) Makefile
 	@printf "%-3s $<\n" ASM
-	@$(ASM) $(FLAGS) $< -o $@
+	@$(ASM) $(FLAGS) -f$(FORMAT) $< -o $@
 
 clean:
 	@printf "%-3s $(OBJDIR)\n" RM

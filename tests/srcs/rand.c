@@ -1,24 +1,44 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   test_utils.c                                     .::    .:/ .      .::   */
+/*   rand.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/26 16:34:23 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 17:33:52 by chamada     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/07 17:30:26 by chamada      #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/08 17:40:28 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <tests.h>
-#include <stdio.h>
+#include <stdlib.h>
+#include <ctype.h>
 
-int		run_test(char *label, int fw, int (*test)())
+unsigned int	ft_rand(unsigned int min, unsigned int max)
 {
-	int	ret;
+	static unsigned int	rand = 0xACE1U;
 
-	printf("%s %*s %s\n",
-		BULLET, fw, label, (ret = (*test)()) ? PASS : FAIL);
-	return (ret);
+	if (min == max)
+			return (min);
+	rand += 0x3AD;
+	rand %= max;
+	while (rand < min)
+			rand = rand + max - min;
+	return (rand);
+}
+
+char			*rand_key(int len)
+{
+	char	*key;
+	char	c;
+
+	if (!(key = malloc(sizeof(*key) * (len + 1))))
+			return (NULL);
+	key[len] = '\0';
+	while (len)
+	{
+			c = ft_rand('A', 'z');
+			key[--len] = c;
+	}
+	return (key);
 }

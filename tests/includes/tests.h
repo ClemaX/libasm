@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/14 06:49:04 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/07 12:23:19 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/07 14:16:36 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -27,8 +27,9 @@
 
 int		diff_s(const char *got, const char *expected);
 int		diff_p(void *got, void *expected);
-int		run_test(char *label, int fw, int (*test)());
+int		diff_i(int got, int expected);
 int		diff_size(size_t got, size_t expected);
+int		run_test(char *label, int fw, int (*test)());
 
 char	*rand_key(int len);
 char	*rand_val(int len);
