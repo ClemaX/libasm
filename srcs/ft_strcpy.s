@@ -3,9 +3,9 @@ global	_ft_strcpy
 global	_ft_strncpy
 extern	_ft_strlen
 
-_ft_strncpy:			; RDI, RSI, RDX
+_ft_strncpy:			; RDI, RSI, RDX - RAX, RCX
 	mov		rax, rdi	; Set RAX to dest
-	mov		rcx, rdx	; Set RCX to RCX
+	mov		rcx, rdx	; Set RCX to RDX
 	cld					; Clear DF / go forward
 	rep		movsb		; Copy RCX bytes from RSI to RDI
 	ret
