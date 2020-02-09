@@ -1,5 +1,6 @@
 section	.text
 global	_ft_strcpy
+global	_ft_strncpy
 extern	_ft_strlen
 
 _ft_strncpy:			; RDI, RSI, RDX
