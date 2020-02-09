@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/14 06:49:04 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 17:36:16 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/09 17:59:51 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -14,7 +14,10 @@
 #ifndef TESTS_H
 # define TESTS_H
 
+# include <libasm.h>
 # include <unistd.h>
+# include <diff.h>
+# include <units.h>
 
 # define RESET	"\033[0m"
 # define RED	"\033[0;31m"
@@ -24,13 +27,6 @@
 # define PASS	GREEN"✔"RESET
 # define FAIL	RED"✗"RESET
 # define BULLET	CYAN"▶"RESET
-
-int				diff_s(const char *got, const char *expected);
-int				diff_p(void *got, void *expected);
-int				diff_i(int got, int expected);
-int				diff_size(size_t got, size_t expected);
-int				diff_ssize(ssize_t got, ssize_t expected);
-int				diff_bool(const char *label, char got, char expected);
 
 int				run_test(char *label, int fw, int (*test)());
 void			error(void);

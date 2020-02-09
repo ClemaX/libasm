@@ -1,27 +1,35 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libasm.h                                         .::    .:/ .      .::   */
+/*   test_ft_strcmp.c                                 .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/09 17:05:10 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 18:13:42 by chamada     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/09 17:42:00 by chamada      #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/09 18:01:40 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBASM_H
-# define LIBASM_H
+#include <tests.h>
+#include <stdlib.h>
 
-# include <strings.h>
-# include <stdlib.h>
+int	test_ft_strcmp(void)
+{
+	char	*src;
+	char	*dst;
+	int		diff;
+	int		err;
 
-size_t	ft_strlen(const char *rdi);
-char	*ft_strcpy(const char *rdi, const char *rsi);
-int		ft_strcmp(const char *rdi, const char *rsi);
-ssize_t	ft_write(int edi, const void *rsi, int rdx);
-ssize_t	ft_read(int edi, void *rsi, int rdx);
-char	*ft_strdup(const char *rdi);
-
-#endif
+	src = rand_key(ft_rand(0, 10));
+	dst = rand_key(ft_rand(0, 10));
+	diff = 
+		(err = (!src || !dst))
+		? -1
+		: diff_bool("sign", ft_strcmp(dst, src) < 0, strcmp(dst, src) < 0);
+	free(src);
+	free(dst);
+	if (err)
+		error();
+	return (!diff);
+}

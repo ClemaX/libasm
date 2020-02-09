@@ -1,27 +1,24 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libasm.h                                         .::    .:/ .      .::   */
+/*   units.h                                          .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/09 17:05:10 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 18:13:42 by chamada     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/09 17:43:33 by chamada      #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/09 17:50:18 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBASM_H
-# define LIBASM_H
+#ifndef UNITS_H
+# define UNITS_H
 
-# include <strings.h>
-# include <stdlib.h>
-
-size_t	ft_strlen(const char *rdi);
-char	*ft_strcpy(const char *rdi, const char *rsi);
-int		ft_strcmp(const char *rdi, const char *rsi);
-ssize_t	ft_write(int edi, const void *rsi, int rdx);
-ssize_t	ft_read(int edi, void *rsi, int rdx);
-char	*ft_strdup(const char *rdi);
+int	test_ft_strlen(void);
+int	test_ft_strcpy(void);
+int	test_ft_strcmp(void);
+int	test_ft_write(void);
+int	test_ft_read(void);
+int	test_ft_strdup(void);
 
 #endif

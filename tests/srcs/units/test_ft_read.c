@@ -1,27 +1,31 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   libasm.h                                         .::    .:/ .      .::   */
+/*   test_ft_read.c                                   .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/09 17:05:10 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 18:13:42 by chamada     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/09 17:42:02 by chamada      #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/09 17:57:00 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#ifndef LIBASM_H
-# define LIBASM_H
+#include <tests.h>
 
-# include <strings.h>
-# include <stdlib.h>
+int	test_ft_read(void)
+{
+	int		diff;
+	char	c;
+	int		pipe_fd[2];
 
-size_t	ft_strlen(const char *rdi);
-char	*ft_strcpy(const char *rdi, const char *rsi);
-int		ft_strcmp(const char *rdi, const char *rsi);
-ssize_t	ft_write(int edi, const void *rsi, int rdx);
-ssize_t	ft_read(int edi, void *rsi, int rdx);
-char	*ft_strdup(const char *rdi);
-
-#endif
+	pipe(pipe_fd);
+	write(pipe_fd[1], "ABCDEF", 6);
+	close(pipe_fd[1]);
+	diff = diff_ssize(ft_read(pipe_fd[0], &c, 1), read(pipe_fd[0], &c, 1));
+	diff += diff_ssize(ft_read(pipe_fd[0], &c, 0), read(pipe_fd[0], &c, 0));
+	diff += diff_ssize(ft_read(pipe_fd[0], &c, -1), read(pipe_fd[0], &c, -1));
+	diff += diff_ssize(ft_read(-1, &c, 1), read(-1, &c, 1));
+	close(pipe_fd[0]);
+	return (!diff);
+}

@@ -8,13 +8,14 @@ AR		=	/usr/bin/ar
 AFLAGS	=	rcus
 RM		=	/bin/rm
 FORMAT	=	macho64
-FLAGS	=	
+FLAGS	=	-g
 SRCS	=	$(addprefix $(SRCDIR)/ft_, strlen.s strcpy.s strcmp.s write.s read.s strdup.s)
 OBJS	=	$(patsubst $(SRCDIR)/%.s, $(OBJDIR)/%.o, $(SRCS))
 TSTDIR	=	tests
-TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/,				\
-			$(addprefix diff/diff_, bool.c sizes.c types.c)	\
-			tests.c test_utils.c rand.c)
+TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/,												\
+			$(addprefix diff/diff_, bool.c sizes.c types.c)									\
+			$(addprefix units/test_ft_, strlen.c strcpy.c strcmp.c write.c read.c strdup.c)	\
+			main.c utils.c rand.c)
 TSTINC	=	$(TSTDIR)/includes
 TSTCMD	=	./test
 
