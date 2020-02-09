@@ -1,33 +1,26 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   test_utils.c                                     .::    .:/ .      .::   */
+/*   libasm.h                                         .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/26 16:34:23 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 17:36:24 by chamada     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/09 17:05:10 by chamada      #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/09 17:09:20 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
-#include <tests.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
+#ifndef LIBASM_H
+# define LIBASM_H
 
-int		run_test(char *label, int fw, int (*test)())
-{
-	int	ret;
+# include <string.h>
 
-	printf("%s %*s %s\n",
-		BULLET, fw, label, (ret = (*test)()) ? PASS : FAIL);
-	return (ret);
-}
+size_t	ft_strlen(const char *rdi);
+char	*ft_strcpy(const char *rdi, const char *rsi);
+char	*ft_strdup(const char *rdi, const char *rsi);
+int		ft_strcmp(const char *rdi, const char *rsi);
+ssize_t	ft_write(int edi, const void *rsi, int rdx);
+ssize_t	ft_read(int edi, void *rsi, int rdx);
 
-void	error(void)
-{
-	perror(strerror(errno));
-	exit(1);
-}
+#endif

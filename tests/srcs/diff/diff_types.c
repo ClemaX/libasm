@@ -1,33 +1,48 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   test_utils.c                                     .::    .:/ .      .::   */
+/*   diff_types.c                                     .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/26 16:34:23 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 17:36:24 by chamada     ###    #+. /#+    ###.fr     */
+/*   Created: 2020/02/07 17:30:53 by chamada      #+#   ##    ##    #+#       */
+/*   Updated: 2020/02/09 17:33:26 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <stdlib.h>
 #include <stdio.h>
-#include <errno.h>
 #include <string.h>
 
-int		run_test(char *label, int fw, int (*test)())
+int		diff_s(const char *got, const char *expected)
 {
-	int	ret;
+	int	diff;
 
-	printf("%s %*s %s\n",
-		BULLET, fw, label, (ret = (*test)()) ? PASS : FAIL);
-	return (ret);
+	if ((diff = strcmp(got, expected)))
+		printf("%s: got: %s, expected: %s\n",
+			RED"DIFF"RESET, got, expected);
+	return (diff != 0);
 }
 
-void	error(void)
+int		diff_p(void *got, void *expected)
 {
-	perror(strerror(errno));
-	exit(1);
+	if (got != expected)
+	{
+		printf("%s: got: %p, expected: %p\n",
+			RED"DIFF"RESET, got, expected);
+		return (1);
+	}
+	return (0);
+}
+
+int		diff_i(int got, int expected)
+{
+	if (got != expected)
+	{
+		printf("%s: got: %d, expected: %d\n",
+			RED"DIFF"RESET, got, expected);
+		return (1);
+	}
+	return (0);
 }

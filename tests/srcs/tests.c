@@ -6,22 +6,16 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/06 17:47:17 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/08 19:21:29 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/02/09 17:38:50 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
 
+#include <libasm.h>
 #include <tests.h>
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #include <unistd.h>
-
-size_t	ft_strlen(const char *rdi);
-char*	ft_strcpy(const char *rdi, const char *rsi);
-int		ft_strcmp(const char *rdi, const char *rsi);
-ssize_t	ft_write(int edi, const void *rsi, int rdx);
-ssize_t	ft_read(int edi, void *rsi, int rdx);
 
 int	test_ft_strlen(void)
 {
@@ -45,12 +39,21 @@ int	test_ft_strcpy(void)
 
 int	test_ft_strcmp(void)
 {
-	char	*src = rand_key(10);
-	char	*dst = rand_key(10);
-	int		diff = diff_bool("sign", ft_strcmp(dst, src) < 0, strcmp(dst, src) < 0);
-	
+	char	*src;
+	char	*dst;
+	int		diff;
+	int		err;
+
+	src = rand_key(ft_rand(0, 10));
+	dst = rand_key(ft_rand(0, 10));
+	diff = 
+		(err = (!src || !dst))
+		? -1
+		: diff_bool("sign", ft_strcmp(dst, src) < 0, strcmp(dst, src) < 0);
 	free(src);
 	free(dst);
+	if (err)
+		error();
 	return (!diff);
 }
 
@@ -58,12 +61,12 @@ int	test_ft_write(void)
 {
 	static const int	len = 4;
 	static const char	*expected = "Wow!";
-	static char			got[len];
-	int					diff = 0;
+	char				got[len];
+	int					diff;
 	int					pipe_fd[2];
 
 	pipe(pipe_fd);
-	diff += diff_ssize(ft_write(pipe_fd[1], expected, len), write(pipe_fd[1], expected, len));
+	diff = diff_ssize(ft_write(pipe_fd[1], expected, len), write(pipe_fd[1], expected, len));
 	diff += diff_ssize(ft_write(pipe_fd[1], expected, 0), write(pipe_fd[1], expected, 0));
 	diff += diff_ssize(ft_write(pipe_fd[1], expected, -1), write(pipe_fd[1], expected, -1));
 	close(pipe_fd[1]);
@@ -76,14 +79,14 @@ int	test_ft_write(void)
 
 int	test_ft_read(void)
 {
-	int					diff = 0;
-	char				c;
-	int					pipe_fd[2];
+	int		diff;
+	char	c;
+	int		pipe_fd[2];
 
 	pipe(pipe_fd);
 	write(pipe_fd[1], "ABCDEF", 6);
 	close(pipe_fd[1]);
-	diff += diff_ssize(ft_read(pipe_fd[0], &c, 1), read(pipe_fd[0], &c, 1));
+	diff = diff_ssize(ft_read(pipe_fd[0], &c, 1), read(pipe_fd[0], &c, 1));
 	diff += diff_ssize(ft_read(pipe_fd[0], &c, 0), read(pipe_fd[0], &c, 0));
 	diff += diff_ssize(ft_read(pipe_fd[0], &c, -1), read(pipe_fd[0], &c, -1));
 	diff += diff_ssize(ft_read(-1, &c, 1), read(-1, &c, 1));
