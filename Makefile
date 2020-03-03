@@ -14,7 +14,7 @@ OBJS	=	$(patsubst $(SRCDIR)/%.s, $(OBJDIR)/%.o, $(SRCS))
 TSTDIR	=	tests
 TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/,												\
 			$(addprefix diff/diff_, bool.c sizes.c types.c)									\
-			$(addprefix units/test_ft_, strlen.c strcpy.c strcmp.c write.c read.c strdup.c)	\
+			$(addprefix units/test_ft_, strlen.c strcpy.c strcmp.c write.c read.c strdup.c atoi_base.c)	\
 			main.c utils.c rand.c)
 TSTINC	=	$(TSTDIR)/includes
 TSTCMD	=	./test

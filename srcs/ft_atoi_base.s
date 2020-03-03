@@ -6,6 +6,9 @@ _ft_atoi_base:					; RDI, RSI
 	jmp		validate_base
 
 validate_base:					; RDI
+	push	rbp					; Save the stack base pointer
+	mov		rbp, rsp			; Set the base pointer to the top of the stack
+	sub		rsp, 32				; Reserve 32 bytes for 256 boolleans
 	sub		rcx, rcx			; Clear RCX
 .valid:
 	mov		al, [rdi + rcx]		; Read a char at RCX
@@ -13,7 +16,7 @@ validate_base:					; RDI
 	je		.error				; Cannot have signs
 	cmp		al, '-'				;
 	je		.error				; Cannot have signs
-	btc		occured, al			; Toggle bit and check value
+	bts		rsp, 64				; Set bit and check value
 	jc		.error				; Dupplicate characters
 	test	al, al				; Check for terminator
 	inc		rcx					; Increment RCX
@@ -21,7 +24,9 @@ validate_base:					; RDI
 	cmp		rcx, 2				; Check minimum length
 	jb		.error				; Return if below
 	mov		rax, 1				; Return 1 TEST
+.exit:
+	pop		rbp
 	ret
 .error:
-	sub		rax, rax			; Clear RAX
-	ret
+	sub		rax, rax			; Return 0
+	jmp		.exit

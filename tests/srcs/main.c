@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                          LE - /            */
 /*                                                              /             */
-/*   tests.c                                          .::    .:/ .      .::   */
+/*   main.c                                           .::    .:/ .      .::   */
 /*                                                 +:+:+   +:    +:  +:+:+    */
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/06 17:47:17 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 17:50:39 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/03/03 20:51:04 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -19,7 +19,7 @@
 
 int	main(void)
 {
-	static const int	fw = -9;
+	static const int	fw = -12;
 	int					err;
 
 	err = 0;
@@ -29,5 +29,6 @@ int	main(void)
 	err |= !run_test("ft_write", fw, &test_ft_write);
 	err |= !run_test("ft_read", fw, &test_ft_read);
 	err |= !run_test("ft_strdup", fw, &test_ft_strdup);
+	err |= !run_test("ft_atoi_base", fw, &test_ft_atoi_base);
 	return (err);
 }
