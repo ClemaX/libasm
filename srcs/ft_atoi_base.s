@@ -21,42 +21,45 @@ _ft_atoi_base:					; RDI, RSI
 	inc		rcx					; Increment RCX
 	test	al,		al			; Check for terminator
 	jnz		.validate			; Loop until terminator
+	sub		rcx,	1			; Get length from size
 	cmp		rcx,	2			; Check minimum length
 	jb		.error				; Return if below
-	mov		al,		1			; Set AL to 1
-	mov		rsi,	0			; Set RDI to 0
-.skip_whitespace:
-	cmp		bl,		'\t'
+	sub		al,		al			; Clear AL
+	sub		rbx,	rbx			; Clear RBX
+	sub		rsi,	rsi			; Set RSI to 0
+.prefix:
+	mov		bl,		[rdi]		; Read a char from RDI
+	cmp		bl,		'+'			; Skip '+' sign
+	je		.skip
+	cmp		bl,		9			; Skip whitespace
 	jl		.sign
-	cmp		bl,		'\r'
-	jl		.whitespace
+	cmp		bl,		13
+	jl		.skip				;
 	cmp		bl,		' '
-	je		.whitespace
+	je		.skip				;
 .sign:
-	mov		bl,		[rdi]		; Read a char from RDI
-	cmp		bl,		'+'			; 
-	je		.skip				; Skip '+' sign
-	cmp		bl,		'-'			; 
-	jne		.negate				; Continue if there is no sign
-	inc		rsi					; Increment '-' counter
+	cmp		bl,		'-'			; Continue if there is no sign 
+	jne		.convert
+	inc		rsi					; Increment '-' counter TODO: inc si should be enough
+.skip:
 	inc		rdi					; Increment RDI
-	jmp		.sign
-.negate:
-	test	rsi,	1			; Check parity
-	jz		.convert
-	neg		eax
+	jmp		.prefix				; TODO: push rsi
 .convert:
-	mov		bl,		[rdi]		; Read a char from RDI
-	mov		al,		[rdx + rax]	; Read the characters magnitude
-	cmp		al,		-1			; Check for invalid character
+	mov		bl,		[rdx + rbx]	; Read the characters magnitude
+	cmp		bl,		-1			; Check for invalid character
 	je		.exit
-	imul	ecx					; Multiply EAX by ECX
-	add		eax,	al			;
+	mul		ecx					; Multiply EAX by ECX
+	add		eax,	ebx			; Add the characters magnitude
+	inc		rdi					; Increment RDI
+	mov		bl,		[rdi]		; Read a char from RDI
+	jmp		.convert			; Loop
+.negate:
+	test	si,	1				; Check parity
+	jz		.exit
+	neg		eax
 .exit:
 	ret
 .error:
 	sub		rax,	rax			; Return 0
 	jmp		.exit
-.skip:
-	inc		rdi					; Skip whitespace
-	jmp		.skip_whitespace	
+
