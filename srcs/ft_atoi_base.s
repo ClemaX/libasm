@@ -5,6 +5,9 @@ section	.text
 global	_ft_atoi_base
 
 _ft_atoi_base:					; RDI, RSI
+	push	rbx					; Store RBX
+	push	rdi					; Store RDI
+	push	rsi					; Store RSI
 	sub		rcx,	rcx			; Clear RCX
 	sub		rax,	rax			; Clear RAX
 	lea		rdx,	[rel buff]	; 
@@ -27,7 +30,7 @@ _ft_atoi_base:					; RDI, RSI
 	jb		.error				; Return if below
 	sub		al,		al			; Clear AL
 	sub		rbx,	rbx			; Clear RBX
-	sub		si,	si				; Set RSI to 0
+	sub		r10,	r10			; Set RSI to 0
 .prefix:
 	mov		bl,		[rdi]		; Read a char from RDI
 	cmp		bl,		'+'			; Skip '+' sign
@@ -41,12 +44,11 @@ _ft_atoi_base:					; RDI, RSI
 .sign:
 	cmp		bl,		'-'			; Continue if there is no sign 
 	jne		.root
-	inc		si					; Increment '-' counter TODO: inc si should be enough
+	inc		r10					; Increment '-' counter 
 .skip:
 	inc		rdi					; Increment RDI
-	jmp		.prefix				; TODO: push rsi
+	jmp		.prefix				; 
 .root:
-	push	si					; Save RSI ('-'-parity)
 	mov		rsi,	rdx			; Set RSI to RDX
 .convert:
 	mov		bl,		[rsi + rbx]	; Read the characters magnitude
@@ -58,13 +60,23 @@ _ft_atoi_base:					; RDI, RSI
 	mov		bl,		[rdi]		; Read a char from RDI
 	jmp		.convert			; Loop
 .negate:
-	pop		si					; Restore RSI ('-'-parity)
-	test	si,		1			; Check parity
-	jz		.exit
+	test	r10,	1			; Check parity
+	jz		.done
 	neg		eax					; Negate EAX
+.done:
+	lea		rdx,	[rel buff]	; 
+	pop		rsi					; Restore RSI
+.clear:
+	mov		bl,		[rsi + rcx]	; Read a char at RCX
+	mov		byte [rdx + rbx], -1; Reset current char
+	test	rcx, rcx			; 
+	jz		.exit				; Continue if not zero
+	dec		rcx					; Decrement RCX
+	jmp		.clear
 .exit:
+	pop		rdi					; Restore RDI
+	pop		rbx					; Restore RBX
 	ret
 .error:
 	sub		rax,	rax			; Return 0
-	jmp		.exit
-
+	jmp		.done
