@@ -31,5 +31,6 @@ int	main(void)
 	err |= !run_test("ft_strdup", fw, &test_ft_strdup);
 	err |= !run_test("ft_atoi_base", fw, &test_ft_atoi_base);
 	err |= !run_test("ft_list_push_front", fw, &test_ft_list_push_front);
+	err |= !run_test("ft_list_size", fw, &test_ft_list_size);
 	return (err);
 }

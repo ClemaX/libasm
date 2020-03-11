@@ -27,5 +27,6 @@ char	*ft_strdup(const char *rdi);
 
 int		ft_atoi_base(const char *str, const char *base);
 int		ft_list_push_front(t_list **lst, void *data);
+int		ft_list_size(t_list *lst);
 
 #endif
