@@ -1,16 +1,5 @@
 #include <tests.h>
 
-static t_list	*lst_add_front(t_list **list, char *data)
-{
-	t_list	*new;
-
-	if (!(new = malloc(sizeof(*new))))
-		return (NULL);
-	new->next = *list;
-	new->data = data;
-	return ((*list = new));
-}
-
 int				test_ft_list_size(void)
 {
 	t_list	*list;

@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/02/06 17:47:17 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/03/10 22:37:31 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/03/11 16:26:35 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -32,5 +32,6 @@ int	main(void)
 	err |= !run_test("ft_atoi_base", fw, &test_ft_atoi_base);
 	err |= !run_test("ft_list_push_front", fw, &test_ft_list_push_front);
 	err |= !run_test("ft_list_size", fw, &test_ft_list_size);
+	err |= !run_test("ft_list_remove_if", fw, &test_ft_list_remove_if);
 	return (err);
 }

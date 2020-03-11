@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
 /*                                                 #+#   #+    #+    #+#      */
 /*   Created: 2020/01/14 06:49:04 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 17:59:51 by chamada     ###    #+. /#+    ###.fr     */
+/*   Updated: 2020/03/11 16:25:30 by chamada     ###    #+. /#+    ###.fr     */
 /*                                                         /                  */
 /*                                                        /                   */
 /* ************************************************************************** */
@@ -35,5 +35,7 @@ unsigned int	ft_rand(unsigned int min, unsigned int max);
 char			*rand_key(int len);
 char			*rand_val(int len);
 char			**rand_tab_map(int count, int len);
+
+t_list			*lst_add_front(t_list **list, void *data);
 
 #endif
