@@ -14,6 +14,7 @@
 #ifndef LIBASM_H
 # define LIBASM_H
 
+# include <list.h>
 # include <strings.h>
 # include <stdlib.h>
 
@@ -25,5 +26,6 @@ ssize_t	ft_read(int edi, void *rsi, int rdx);
 char	*ft_strdup(const char *rdi);
 
 int		ft_atoi_base(const char *str, const char *base);
+int		ft_list_push_front(t_list **lst, void *data);
 
 #endif

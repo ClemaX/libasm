@@ -21,5 +21,6 @@ int	test_ft_write(void);
 int	test_ft_read(void);
 int	test_ft_strdup(void);
 int	test_ft_atoi_base(void);
+int	test_ft_list_push_front(void);
 
 #endif

@@ -19,7 +19,7 @@
 
 int	main(void)
 {
-	static const int	fw = -12;
+	static const int	fw = -18;
 	int					err;
 
 	err = 0;
@@ -30,5 +30,6 @@ int	main(void)
 	err |= !run_test("ft_read", fw, &test_ft_read);
 	err |= !run_test("ft_strdup", fw, &test_ft_strdup);
 	err |= !run_test("ft_atoi_base", fw, &test_ft_atoi_base);
+	err |= !run_test("ft_list_push_front", fw, &test_ft_list_push_front);
 	return (err);
 }

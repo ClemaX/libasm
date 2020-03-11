@@ -9,12 +9,12 @@ AFLAGS	=	rcus
 RM		=	/bin/rm
 FORMAT	=	macho64
 FLAGS	=	-g
-SRCS	=	$(addprefix $(SRCDIR)/ft_, strlen.s strcpy.s strcmp.s write.s read.s strdup.s atoi_base.s)
+SRCS	=	$(addprefix $(SRCDIR)/ft_, strlen.s strcpy.s strcmp.s write.s read.s strdup.s atoi_base.s list_push_front.s)
 OBJS	=	$(patsubst $(SRCDIR)/%.s, $(OBJDIR)/%.o, $(SRCS))
 TSTDIR	=	tests
 TSTSRCS	=	$(addprefix $(TSTDIR)/$(SRCDIR)/,												\
 			$(addprefix diff/diff_, bool.c sizes.c types.c)									\
-			$(addprefix units/test_ft_, strlen.c strcpy.c strcmp.c write.c read.c strdup.c atoi_base.c)	\
+			$(addprefix units/test_ft_, strlen.c strcpy.c strcmp.c write.c read.c strdup.c atoi_base.c list_push_front.c)	\
 			main.c utils.c rand.c)
 TSTINC	=	$(TSTDIR)/includes
 TSTCMD	=	./test
