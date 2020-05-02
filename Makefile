@@ -1,4 +1,4 @@
-NAME	=	libft.a
+NAME	=	libasm.a
 SRCDIR	=	srcs
 OBJDIR	=	objs
 ASM		=	nasm
