@@ -1,7 +1,7 @@
 NAME	=	libft.a
 SRCDIR	=	srcs
 OBJDIR	=	objs
-ASM		=	/Users/chamada/brew/bin/nasm
+ASM		=	nasm
 CC		=	/usr/bin/clang
 CFLAGS	=	-Wall -Wextra -Werror
 AR		=	/usr/bin/ar
