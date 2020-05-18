@@ -16,6 +16,8 @@
 
 # include <libasm.h>
 # include <unistd.h>
+# include <string.h>
+# include <stdint.h>
 # include <diff.h>
 # include <units.h>
 
