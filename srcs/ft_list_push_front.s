@@ -6,7 +6,7 @@ ft_list_push_front:				; RDI, RSI
 	push	rdi
 	push	rsi
 	mov		rdi,		16
-	call	malloc				; malloc(sizeof(t_list))
+	call	malloc wrt ..plt	; malloc(sizeof(t_list))
 	pop		rsi
 	pop		rdi
 	test	rax, rax			; Check for NULL
