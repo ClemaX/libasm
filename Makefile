@@ -7,7 +7,7 @@ CFLAGS	=	-Wall -Wextra -Werror
 AR		=	/usr/bin/ar
 AFLAGS	=	rcus
 RM		=	/bin/rm
-FORMAT	=	macho64
+FORMAT	=	elf64
 FLAGS	=	-g
 UNITS	=	strlen strcpy strcmp write read strdup atoi_base list_push_front list_size list_remove_if
 SRCS	=	$(addprefix $(SRCDIR)/ft_, $(addsuffix .s, $(UNITS)))
@@ -49,5 +49,5 @@ re:				fclean all
 
 test:			all $(TSTSRCS)
 	@printf "%-3s $(TSTSRCS)\n" CC
-	@$(CC) $(CFLAGS) $(TSTSRCS) -I$(TSTINC) -L. -lft -o test
+	@$(CC) $(CFLAGS) $(TSTSRCS) -I$(TSTINC) -L. -lasm -o test
 	$(TSTCMD)
