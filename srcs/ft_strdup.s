@@ -11,8 +11,11 @@ ft_strdup:						; RDI
 	mov		rdi, rax			; Set RDI to size
 	push	rax					; Save size
 	call	malloc wrt ..plt	; malloc(RDI)
-	mov		rdi, rax			; Set RDI to dst
 	pop		rdx					; Set RDX to size
 	pop		rsi					; Set RSI to src
+	test	rax, rax			; Check for NULL
+	jz		.end				; Abort and return NULL
+	mov		rdi, rax			; Set RDI to dst
 	call	ft_strncpy			; ft_strncpy(RDI, RSI, RDX)
+.end:
 	ret
