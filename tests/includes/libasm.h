@@ -21,8 +21,8 @@
 size_t	ft_strlen(const char *rdi);
 char	*ft_strcpy(const char *rdi, const char *rsi);
 int		ft_strcmp(const char *rdi, const char *rsi);
-ssize_t	ft_write(int edi, const void *rsi, int rdx);
-ssize_t	ft_read(int edi, void *rsi, int rdx);
+ssize_t	ft_write(int edi, const void *rsi, size_t rdx);
+ssize_t	ft_read(int edi, void *rsi, size_t rdx);
 char	*ft_strdup(const char *rdi);
 
 int		ft_atoi_base(const char *str, const char *base);
