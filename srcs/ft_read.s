@@ -1,7 +1,7 @@
 section	.text
-global	_ft_read
+global	ft_read
 
-_ft_read:					; RDI, RSI, RDX
+ft_read:					; RDI, RSI, RDX
 	test	rdx, rdx		; Check for negative length
 	js		error			;
 	mov		rax, 0x2000003	; Read Call #

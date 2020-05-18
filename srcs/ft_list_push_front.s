@@ -1,12 +1,12 @@
 section	.text
-extern	_malloc
-global	_ft_list_push_front
+extern	malloc
+global	ft_list_push_front
 
-_ft_list_push_front:			; RDI, RSI
+ft_list_push_front:				; RDI, RSI
 	push	rdi
 	push	rsi
 	mov		rdi,		16
-	call	_malloc				; malloc(sizeof(t_list))
+	call	malloc				; malloc(sizeof(t_list))
 	pop		rsi
 	pop		rdi
 	test	rax, rax			; Check for NULL

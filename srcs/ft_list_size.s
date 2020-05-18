@@ -1,7 +1,7 @@
 section	.text
-global	_ft_list_size
+global	ft_list_size
 
-_ft_list_size:					; RDI
+ft_list_size:					; RDI
 	sub		rax,	rax			; Clear RCX
 .loop:
 	test	rdi,	rdi			; Check for NULL

@@ -2,9 +2,9 @@ section	.data
 buff:	times 256 db -1		; 256 bytes writeable zero-buff
 
 section	.text
-global	_ft_atoi_base
+global	ft_atoi_base
 
-_ft_atoi_base:					; RDI, RSI
+ft_atoi_base:					; RDI, RSI
 	push	rbx					; Store RBX
 	push	rdi					; Store RDI
 	push	rsi					; Store RSI

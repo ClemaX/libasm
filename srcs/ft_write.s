@@ -1,7 +1,7 @@
 section	.text
-global	_ft_write
+global	ft_write
 
-_ft_write:					; RDI, RSI, RDX
+ft_write:					; RDI, RSI, RDX
 	test	rdx, rdx
 	js		error			;
 	mov		rax, 0x2000004	; Write Call #

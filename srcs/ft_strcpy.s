@@ -1,21 +1,21 @@
 section	.text
-global	_ft_strcpy
-global	_ft_strncpy
-extern	_ft_strlen
+global	ft_strcpy
+global	ft_strncpy
+extern	ft_strlen
 
-_ft_strncpy:			; RDI, RSI, RDX - RAX, RCX
+ft_strncpy:			; RDI, RSI, RDX - RAX, RCX
 	mov		rax, rdi	; Set RAX to dest
 	mov		rcx, rdx	; Set RCX to RDX
 	cld					; Clear DF / go forward
 	rep		movsb		; Copy RCX bytes from RSI to RDI
 	ret
 
-_ft_strcpy:				; RDI, RSI
+ft_strcpy:				; RDI, RSI
 	push	rdi			; Save RDI
 	mov		rdi, rsi	; Put RSI into RDI
-	call	_ft_strlen	; Get total length
+	call	ft_strlen	; Get total length
 	pop		rdi			; Restore RDI
 	mov		rdx, rax	; Put length into RDX
 	inc		rdx			; Increment RDX to give size
-	call	_ft_strncpy	; Copy total string
+	call	ft_strncpy	; Copy total string
 	ret
