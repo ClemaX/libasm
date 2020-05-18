@@ -49,5 +49,5 @@ re:				fclean all
 
 test:			all $(TSTSRCS)
 	@printf "%-3s $(TSTSRCS)\n" CC
-	@$(CC) $(CFLAGS) $(TSTSRCS) -I$(TSTINC) -L. -lft -o test
+	@$(CC) $(CFLAGS) $(TSTSRCS) -I$(TSTINC) -L. -lasm -o test
 	$(TSTCMD)
