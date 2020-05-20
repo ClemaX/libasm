@@ -14,6 +14,7 @@
 #ifndef LIBASM_H
 # define LIBASM_H
 
+# include <sys/types.h>
 # include <list.h>
 # include <stdlib.h>
 # include <errno.h>
