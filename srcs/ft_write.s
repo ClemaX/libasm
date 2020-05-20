@@ -1,7 +1,7 @@
 section	.text
 global	ft_write
 
-ft_write:					; RDI, RSI, RDX
+ft_write:					; RDI, RSI, RDX - RAX
 	test	rdx, rdx		; Check for negative length
 	js		.error			;
 	mov		rax, 1			; Write Call # (Linux)

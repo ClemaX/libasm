@@ -4,7 +4,7 @@ extern	malloc
 extern	ft_strlen
 extern	ft_strncpy
 
-ft_strdup:						; RDI
+ft_strdup:						; RDI - RAX, RDX, RDI
 	push	rdi					; Save src
 	call	ft_strlen			; ft_strlen(RDI)
 	inc		rax					; Increment len

@@ -1,7 +1,7 @@
 section	.text
 global	ft_strcmp
 
-ft_strcmp:					; RDI, RSI
+ft_strcmp:					; RDI, RSI - RAX, RBX!
 	.match:					; While the strings match
 	mov		al, [rdi]		; Read the actual chars
 	mov		bl, [rsi]		;

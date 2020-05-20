@@ -2,7 +2,7 @@ section	.text
 extern	malloc
 global	ft_list_push_front
 
-ft_list_push_front:				; RDI, RSI
+ft_list_push_front:				; RDI, RSI - RAX, R10
 	push	rdi
 	push	rsi
 	mov		rdi,		16
