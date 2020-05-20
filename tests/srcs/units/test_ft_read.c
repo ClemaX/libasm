@@ -12,8 +12,26 @@
 /* ************************************************************************** */
 
 #include <tests.h>
+#include <errno.h>
 
-int	test_ft_read(void)
+int unit_ft_read_errno(void)
+{
+	int		diff;
+	char	c;
+	int		expected_ret;
+	int		expected_errno;
+	int		got_ret;
+
+	expected_ret = read(-1, &c, 1);
+	expected_errno = errno;
+	errno = 0;
+	got_ret = ft_read(-1, &c, 1);
+	diff = diff_i(errno, expected_errno);
+	diff += diff_i(got_ret, expected_ret);
+	return(!diff);
+}
+
+int	unit_ft_read_pipe(void)
 {
 	int		diff;
 	char	c;
@@ -25,7 +43,8 @@ int	test_ft_read(void)
 	diff = diff_ssize(ft_read(pipe_fd[0], &c, 1), read(pipe_fd[0], &c, 1));
 	diff += diff_ssize(ft_read(pipe_fd[0], &c, 0), read(pipe_fd[0], &c, 0));
 	diff += diff_ssize(ft_read(pipe_fd[0], &c, -1), read(pipe_fd[0], &c, -1));
-	diff += diff_ssize(ft_read(-1, &c, 1), read(-1, &c, 1));
 	close(pipe_fd[0]);
 	return (!diff);
 }
+
+int (*tests_ft_read[])(void) = {&unit_ft_read_pipe, &unit_ft_read_errno, NULL};

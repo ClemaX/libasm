@@ -15,7 +15,7 @@
 #include <stdio.h>
 #include <limits.h>
 
-int	test_ft_atoi_base(void)
+int	unit_ft_atoi_base_rand_hex(void)
 {
 	static const int	len = 32;
 	static const char	*base = "0123456789ABCDEF";
@@ -28,3 +28,5 @@ int	test_ft_atoi_base(void)
 	dest = ft_atoi_base(src, base);
 	return (!diff_i(dest, rand));
 }
+
+int (*tests_ft_atoi_base[])(void) = {&unit_ft_atoi_base_rand_hex, NULL};

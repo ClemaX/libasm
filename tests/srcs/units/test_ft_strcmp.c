@@ -14,7 +14,7 @@
 #include <tests.h>
 #include <stdlib.h>
 
-int	test_ft_strcmp(void)
+int	unit_ft_strcmp_rand(void)
 {
 	char	*src;
 	char	*dst;
@@ -33,3 +33,5 @@ int	test_ft_strcmp(void)
 		error();
 	return (!diff);
 }
+
+int (*tests_ft_strcmp[])(void) = {&unit_ft_strcmp_rand, NULL};

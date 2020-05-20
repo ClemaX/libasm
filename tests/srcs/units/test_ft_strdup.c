@@ -14,15 +14,20 @@
 #include <tests.h>
 #include <stdlib.h>
 
-int	test_ft_strdup(void)
+int	unit_ft_strdup_basic(void)
 {
 	static const char	*src = "Copyright (c)";
 	char				*dst;
 	int					diff;
 
 	if (!(dst = ft_strdup(src)))
+	{
 		error();
+		return (1);
+	}
 	diff = diff_s(dst, src);
 	free(dst);
 	return (!diff);
 }
+
+int (*tests_ft_strdup[])(void) = {&unit_ft_strdup_basic, NULL};

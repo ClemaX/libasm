@@ -17,21 +17,38 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-int	main(void)
+static int	run_basic(void)
 {
-	static const int	fw = -18;
-	int					err;
+	int err;
 
 	err = 0;
-	err |= !run_test("ft_strlen", fw, &test_ft_strlen);
-	err |= !run_test("ft_strcpy", fw, &test_ft_strcpy);
-	err |= !run_test("ft_strcmp", fw, &test_ft_strcmp);
-	err |= !run_test("ft_write", fw, &test_ft_write);
-	err |= !run_test("ft_read", fw, &test_ft_read);
-	err |= !run_test("ft_strdup", fw, &test_ft_strdup);
-	err |= !run_test("ft_atoi_base", fw, &test_ft_atoi_base);
-	err |= !run_test("ft_list_push_front", fw, &test_ft_list_push_front);
-	err |= !run_test("ft_list_size", fw, &test_ft_list_size);
-	err |= !run_test("ft_list_remove_if", fw, &test_ft_list_remove_if);
+	err |= !run_tests("ft_strlen", tests_ft_strlen);
+	err |= !run_tests("ft_strcpy", tests_ft_strcpy);
+	err |= !run_tests("ft_strcmp", tests_ft_strcmp);
+	err |= !run_tests("ft_write", tests_ft_write);
+	err |= !run_tests("ft_read", tests_ft_read);
+	err |= !run_tests("ft_strdup", tests_ft_strdup);
+	return (err);
+}
+
+static int run_bonus(void)
+{
+	int err;
+
+	err = 0;
+	err |= !run_tests("ft_atoi_base", tests_ft_atoi_base);
+	err |= !run_tests("ft_list_push_front", tests_ft_list_push_front);
+	err |= !run_tests("ft_list_size", tests_ft_list_size);
+	err |= !run_tests("ft_list_remove_if", tests_ft_list_remove_if);
+	return (err);
+}
+
+int			main(void)
+{
+	int	err;
+
+	err = 0;
+	err |= run_basic();
+	err |= run_bonus();
 	return (err);
 }

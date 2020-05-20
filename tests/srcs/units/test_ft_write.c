@@ -12,8 +12,28 @@
 /* ************************************************************************** */
 
 #include <tests.h>
+#include <errno.h>
+#include <stdio.h>
 
-int	test_ft_write(void)
+int unit_ft_write_errno(void)
+{
+	int		diff;
+	char	c;
+	int		expected_ret;
+	int		expected_errno;
+	int		got_ret;
+
+	c = '\0';
+	expected_ret = write(-1, &c, 1);
+	expected_errno = errno;
+	errno = 0;
+	got_ret = ft_write(-1, &c, 1);
+	diff = diff_i(errno, expected_errno);
+	diff += diff_i(got_ret, expected_ret);
+	return(!diff);
+}
+
+int	unit_ft_write_pipe(void)
 {
 	static const int	len = 4;
 	static const char	*expected = "Wow!";
@@ -33,3 +53,5 @@ int	test_ft_write(void)
 	diff += diff_ssize(ft_write(-1, expected, len), write(-1, expected, len));
 	return (!diff);
 }
+
+int (*tests_ft_write[])(void) = {&unit_ft_write_pipe, &unit_ft_write_errno, NULL};

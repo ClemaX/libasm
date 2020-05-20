@@ -30,7 +30,7 @@ static int check_list(t_list *list, void *expected_data, int expected_len)
 	return (!err);
 }
 
-int	test_ft_list_remove_if(void)
+int	unit_ft_list_remove_if_rand(void)
 {
 	t_list				*list;
 	int					len;
@@ -54,3 +54,5 @@ int	test_ft_list_remove_if(void)
 	ft_list_remove_if(&list, &ref, &test_cmp, &test_free);
 	return (!diff_i(got, 0) && check_list(list, &pos, len - 1));
 }
+
+int (*tests_ft_list_remove_if[])(void) = {&unit_ft_list_remove_if_rand, NULL};

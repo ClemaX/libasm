@@ -19,7 +19,7 @@ int		diff_size(size_t got, size_t expected)
 {
 	if (got != expected)
 	{
-		printf("%s: got: %zu, expected: %zu\n",
+		printf("%s: got: %zu, expected: %zu",
 			RED"DIFF"RESET, got, expected);
 		return (1);
 	}
@@ -30,7 +30,7 @@ int		diff_ssize(ssize_t got, ssize_t expected)
 {
 	if (got != expected)
 	{
-		printf("%s: got: %zd, expected: %zd\n",
+		printf("%s: got: %zd, expected: %zd",
 			RED"DIFF"RESET, got, expected);
 		return (1);
 	}

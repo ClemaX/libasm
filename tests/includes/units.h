@@ -14,16 +14,16 @@
 #ifndef UNITS_H
 # define UNITS_H
 
-int	test_ft_strlen(void);
-int	test_ft_strcpy(void);
-int	test_ft_strcmp(void);
-int	test_ft_write(void);
-int	test_ft_read(void);
-int	test_ft_strdup(void);
+extern int (*tests_ft_strlen[])(void);
+extern int (*tests_ft_strcpy[])(void);
+extern int (*tests_ft_strcmp[])(void);
+extern int (*tests_ft_write[])(void);
+extern int (*tests_ft_read[])(void);
+extern int (*tests_ft_strdup[])(void);
 
-int	test_ft_atoi_base(void);
-int	test_ft_list_push_front(void);
-int	test_ft_list_size(void);
-int	test_ft_list_remove_if(void);
+extern int (*tests_ft_atoi_base[])(void);
+extern int (*tests_ft_list_push_front[])(void);
+extern int (*tests_ft_list_size[])(void);
+extern int (*tests_ft_list_remove_if[])(void);
 
 #endif

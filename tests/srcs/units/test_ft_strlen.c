@@ -13,9 +13,11 @@
 
 #include <tests.h>
 
-int	test_ft_strlen(void)
+int	unit_ft_strlen_basic(void)
 {
 	char	*str = "Thelengthistwentyone!";
 
 	return (!diff_size(ft_strlen(str), strlen(str)));
 }
+
+int (*tests_ft_strlen[])(void) = {&unit_ft_strlen_basic, NULL};

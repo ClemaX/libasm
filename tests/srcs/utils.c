@@ -17,19 +17,32 @@
 #include <errno.h>
 #include <string.h>
 
-int		run_test(char *label, int fw, int (*test)())
+int		run_tests(char *label, int (*tests[])(void))
 {
 	int	ret;
+	int err;
+	int i;
 
-	printf("%s %*s %s\n",
-		BULLET, fw, label, (ret = (*test)()) ? PASS : FAIL);
-	return (ret);
+	printf("%s %*s\t",
+		BULLET, LBL_FW, label);
+	i = 0;
+	err = 0;
+	while (tests[i])
+	{
+		ret = (*tests[i])();
+		printf(ret ? PASS : FAIL);
+		err += !ret;
+		i++;
+		if (tests[i])
+			printf(" ");
+	}
+	printf("\n");
+	return (!err);
 }
 
 void	error(void)
 {
-	perror(strerror(errno));
-	exit(1);
+	perror("Error");
 }
 
 t_list	*lst_add_front(t_list **list, void *data)

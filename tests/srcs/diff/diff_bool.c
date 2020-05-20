@@ -18,7 +18,7 @@ int		diff_bool(const char *label, char got, char expected)
 {
 	if (got != expected)
 	{
-		printf("%s: Wrong %s\n",
+		printf("%s: Wrong %s",
 			RED"DIFF"RESET, label);
 		return (1);
 	}

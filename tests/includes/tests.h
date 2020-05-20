@@ -21,6 +21,7 @@
 # include <diff.h>
 # include <units.h>
 
+# define LBL_FW -18
 # define RESET	"\033[0m"
 # define RED	"\033[0;31m"
 # define GREEN	"\033[0;32m"
@@ -30,7 +31,7 @@
 # define FAIL	RED"✗"RESET
 # define BULLET	CYAN"▶"RESET
 
-int				run_test(char *label, int fw, int (*test)());
+int				run_tests(char *label, int (*tests[])());
 void			error(void);
 
 unsigned int	ft_rand(unsigned int min, unsigned int max);

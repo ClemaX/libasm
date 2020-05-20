@@ -14,7 +14,7 @@
 #include <tests.h>
 #include <stdlib.h>
 
-int	test_ft_strcpy(void)
+int	unit_ft_strcpy_basic(void)
 {
 	static const char	*src = "Copyright (c)";
 	char				*dst;
@@ -26,3 +26,5 @@ int	test_ft_strcpy(void)
 	free(dst);
 	return (!diff);
 }
+
+int (*tests_ft_strcpy[])(void) = {&unit_ft_strcpy_basic, NULL};

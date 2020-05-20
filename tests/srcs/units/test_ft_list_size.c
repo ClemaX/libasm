@@ -1,6 +1,6 @@
 #include <tests.h>
 
-int				test_ft_list_size(void)
+int	unit_ft_list_size_rand(void)
 {
 	t_list	*list;
 	int		expected;
@@ -14,3 +14,5 @@ int				test_ft_list_size(void)
 	i = ft_list_size(list);
 	return (!diff_i(i, expected));
 }
+
+int (*tests_ft_list_size[])(void) = {&unit_ft_list_size_rand, NULL};
