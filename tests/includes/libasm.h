@@ -15,8 +15,8 @@
 # define LIBASM_H
 
 # include <list.h>
-# include <strings.h>
 # include <stdlib.h>
+# include <errno.h>
 
 size_t	ft_strlen(const char *rdi);
 char	*ft_strcpy(const char *rdi, const char *rsi);

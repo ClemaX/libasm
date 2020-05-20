@@ -1,5 +1,6 @@
 section	.text
 global	ft_write
+extern	__errno_location
 
 ft_write:					; RDI, RSI, RDX - RAX
 	test	rdx, rdx		; Check for negative length
@@ -12,5 +13,9 @@ ft_write:					; RDI, RSI, RDX - RAX
 ;	jc		.error			; Check for error (BSD)
 	ret
 .error:
-	mov		rax, -1	; Return -1
+	mov		rdx, rax		; Get error code
+	neg		rdx
+	call	__errno_location wrt ..plt; Get errno pointer
+	mov		[rax], rdx		; Set errno to error code
+	mov		rax, -1			; Return -1
 	ret
