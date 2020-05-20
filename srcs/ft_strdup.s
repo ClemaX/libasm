@@ -10,7 +10,7 @@ ft_strdup:						; RDI - RAX, RDX, RDI
 	inc		rax					; Increment len
 	mov		rdi, rax			; Set RDI to size
 	push	rax					; Save size
-	call	malloc wrt ..plt	; malloc(RDI)
+	call	malloc				; malloc(RDI)
 	pop		rdx					; Set RDX to size
 	pop		rsi					; Set RSI to src
 	test	rax, rax			; Check for NULL

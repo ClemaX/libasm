@@ -22,7 +22,7 @@ ft_list_remove_if:
 	call	rbx					; free_fct(RDI)
 	mov		rdi,	r13			; Set RDI to list pointer
 	mov		r13,	[r13 + 8]	; Set R13 to next pointer
-	call	free wrt ..plt		; free(RDI)
+	call	free				; free(RDI)
 	mov		[r12],	r13			; Set *R12 to next pointer
 	jmp		.start				; Loop on next pointer
 .loop:
@@ -44,6 +44,6 @@ ft_list_remove_if:
 	call	rbx					; free_fct(RDI)
 	mov		rdi,	r14			; Set RDI to list pointer
 	mov		r14,	[r14 + 8]	; Set R14 to next pointer
-	call	free wrt ..plt		; free(RDI)
+	call	free				; free(RDI)
 	mov		[r13 + 8], r14		; Set previous next pointer to R14
 	jmp		.loop				; Continue loop
