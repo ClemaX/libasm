@@ -5,7 +5,7 @@ ASM		=	nasm
 CC		=	/usr/bin/clang
 CFLAGS	=	-Wall -Wextra -Werror
 AR		=	/usr/bin/ar
-AFLAGS	=	rcus
+ARFLAGS	=	rcus
 RM		=	/bin/rm
 FORMAT	=	elf64
 FLAGS	=	-g
@@ -27,7 +27,7 @@ all:			$(NAME)
 
 $(NAME):		$(OBJS)
 	@printf "%-3s $@ $(OBJS)\n" AR
-	@$(AR) $(AFLAGS) $@ $(OBJS)
+	@$(AR) $(ARFLAGS) $@ $(OBJS)
 
 $(OBJDIR):
 	@printf "%-3s $@\n" MK
