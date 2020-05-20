@@ -1,5 +1,6 @@
 %ifidn __OUTPUT_FORMAT__, elf64
-	%assign WRITE_CALL 1
+	%assign WRITE_CALL	0x1
+	%define ERRNO		__errno_location
 	%macro JERR 1
 		mov		rdx, rax	; Get error code
 		neg		rdx			; Negate error code
@@ -7,7 +8,8 @@
 		js		%1
 	%endmacro
 %elifidn __OUTPUT_FORMAT__, macho64
-	%assign WRITE_CALL 0x2000004
+	%assign WRITE_CALL	0x2000004
+	%define ERRNO		__error
 	%macro JERR 1
 		mov		rdx, rax	; Get error code
 		jc		%1			; Check for error (BSD)
@@ -16,7 +18,7 @@
 
 section	.text
 global	ft_write
-extern	__errno_location
+extern	ERRNO
 
 ft_write:					; RDI, RSI, RDX - RAX
 	test	rdx, rdx		; Check for negative length
@@ -26,7 +28,7 @@ ft_write:					; RDI, RSI, RDX - RAX
 	JERR	.error
 	ret
 .error:
-	call	__errno_location wrt ..plt; Get errno pointer
+	call	ERRNO wrt ..plt ; Get errno pointer
 	mov		[rax], rdx		; Set errno to error code
 	mov		rax, -1			; Return -1
 	ret

@@ -1,5 +1,5 @@
 %ifidn __OUTPUT_FORMAT__, elf64
-	%assign READ_CALL	0
+	%assign READ_CALL	0x0
 	%define ERRNO		__errno_location
 	%macro JERR 1
 		mov		rdx, rax	; Get error code
