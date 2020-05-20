@@ -12,10 +12,6 @@
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <errno.h>
-#include <string.h>
 
 int		run_tests(char *label, int (*tests[])(void))
 {
@@ -38,11 +34,6 @@ int		run_tests(char *label, int (*tests[])(void))
 	}
 	printf("\n");
 	return (!err);
-}
-
-void	error(void)
-{
-	perror("Error");
 }
 
 t_list	*lst_add_front(t_list **list, void *data)

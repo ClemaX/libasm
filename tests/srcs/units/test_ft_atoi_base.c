@@ -12,8 +12,6 @@
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <stdio.h>
-#include <limits.h>
 
 int	unit_ft_atoi_base_rand_hex(void)
 {

@@ -1,5 +1,4 @@
 #include <tests.h>
-#include <stdio.h>
 
 static int	test_cmp(int *a, int *b)
 {
@@ -48,7 +47,7 @@ int	unit_ft_list_remove_if_rand(void)
 	while (i < len)
 	{
 		if (!(lst_add_front(&list, (i == pos) ? &got : &pos)))
-			error();
+			perror("Error");
 		i++;
 	}
 	ft_list_remove_if(&list, &ref, &test_cmp, &test_free);

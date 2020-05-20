@@ -1,5 +1,4 @@
 #include <tests.h>
-#include <stdio.h>
 
 int	unit_ft_list_push_front_basic(void)
 {
@@ -12,7 +11,7 @@ int	unit_ft_list_push_front_basic(void)
 	ft_list_push_front(&list, data);
 	if (!list)
 	{
-		error();
+		perror("Error");
 		return (1);
 	}
 	diff = diff_p(list->data, data);

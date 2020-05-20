@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <stdlib.h>
 
 int	unit_ft_strdup_basic(void)
 {
@@ -22,7 +21,7 @@ int	unit_ft_strdup_basic(void)
 
 	if (!(dst = ft_strdup(src)))
 	{
-		error();
+		perror("Error");
 		return (1);
 	}
 	diff = diff_s(dst, src);

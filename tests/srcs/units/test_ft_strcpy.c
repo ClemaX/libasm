@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <stdlib.h>
 
 int	unit_ft_strcpy_basic(void)
 {

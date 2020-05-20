@@ -16,8 +16,11 @@
 
 # include <libasm.h>
 # include <unistd.h>
+# include <stdlib.h>
+# include <errno.h>
 # include <string.h>
 # include <stdint.h>
+# include <stdio.h>
 # include <diff.h>
 # include <units.h>
 
@@ -32,7 +35,6 @@
 # define BULLET	CYAN"▶"RESET
 
 int				run_tests(char *label, int (*tests[])());
-void			error(void);
 
 unsigned int	ft_rand(unsigned int min, unsigned int max);
 char			*rand_key(int len);

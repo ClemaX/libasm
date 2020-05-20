@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <stdlib.h>
 
 int	unit_ft_strcmp_rand(void)
 {
@@ -30,7 +29,7 @@ int	unit_ft_strcmp_rand(void)
 	free(src);
 	free(dst);
 	if (err)
-		error();
+		perror("Error");
 	return (!diff);
 }
 

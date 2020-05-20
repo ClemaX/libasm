@@ -12,8 +12,6 @@
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <errno.h>
-#include <stdio.h>
 
 int unit_ft_write_errno(void)
 {

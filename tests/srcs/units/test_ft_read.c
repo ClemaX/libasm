@@ -12,7 +12,6 @@
 /* ************************************************************************** */
 
 #include <tests.h>
-#include <errno.h>
 
 int unit_ft_read_errno(void)
 {
