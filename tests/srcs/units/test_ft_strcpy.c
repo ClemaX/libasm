@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:42:21 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 17:22:59 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 17:23:41 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	unit_ft_strcpy_rand(void)
 	dst = malloc(sizeof(*dst) * (len + 1));
 	ft_strcpy(dst, src);
 	diff = diff_s(dst, src);
+	free(src);
 	free(dst);
 	return (!diff);
 }

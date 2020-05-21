@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:41:56 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 17:19:54 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 17:24:20 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,11 @@ int unit_ft_strlen_rand(void)
 {
 	static const int	len = 256;
 	char				*str = rand_key(len);
+	int					diff;
 
-	return (!diff_size(ft_strlen(str), strlen(str)));
+	diff = diff_size(ft_strlen(str), strlen(str));
+	free(str);
+	return (!diff);
 }
 
 int unit_ft_strlen_zero(void)
