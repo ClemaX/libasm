@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:42:21 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 17:23:41 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 17:42:43 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ int	unit_ft_strcpy_rand(void)
 	char				*dst;
 	int					diff;
 
-	dst = malloc(sizeof(*dst) * (len + 1));
+	if (!src || !(dst = malloc(sizeof(*dst) * (len + 1))))
+	{
+		perror("Error");
+		return (1);
+	}
 	ft_strcpy(dst, src);
 	diff = diff_s(dst, src);
 	free(src);
@@ -30,11 +34,12 @@ int	unit_ft_strcpy_rand(void)
 
 int	unit_ft_strcpy_empty(void)
 {
+	static const int	len = 0;
 	static const char	*src = "";
 	char				*dst;
 	int					diff;
 
-	dst = malloc(sizeof(*dst) * 1);
+	dst = malloc(sizeof(*dst) * (len + 1));
 	ft_strcpy(dst, src);
 	diff = diff_s(dst, src);
 	free(dst);
@@ -43,11 +48,16 @@ int	unit_ft_strcpy_empty(void)
 
 int	unit_ft_strcpy_basic(void)
 {
+	static const int	len = 13;
 	static const char	*src = "Copyright (c)";
 	char				*dst;
 	int					diff;
 
-	dst = malloc(sizeof(*dst) * 14);
+	if (!(dst = malloc(sizeof(*dst) * (len + 1))))
+	{
+		perror("Error");
+		return (1);
+	}
 	ft_strcpy(dst, src);
 	diff = diff_s(dst, src);
 	free(dst);
