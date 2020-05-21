@@ -17,5 +17,7 @@ ft_strcpy:				; RDI, RSI
 	pop		rdi			; Restore RDI
 	mov		rdx, rax	; Put length into RDX
 	inc		rdx			; Increment RDX to give size
+	sub		rsp, 8		; Align stack to 16 bytes
 	call	ft_strncpy	; Copy total string
+	add		rsp, 8		; Restore alignment
 	ret

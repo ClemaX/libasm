@@ -28,7 +28,9 @@ ft_read:					; RDI, RSI, RDX
 	JERR	.error
 	ret
 .error:
+	sub		rsp, 8			; Align stack to 16 bytes
 	call	__errno_location wrt ..plt; Get errno pointer
+	add		rsp, 8			; Restore alignment
 	mov		[rax], rdx		; Set errno to error code
 	mov		rax, -1			; Return -1
 	ret
