@@ -6,13 +6,31 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:42:10 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 16:38:58 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 17:08:15 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <tests.h>
 
-int unit_ft_write_errno(void)
+int unit_ft_write_errno_size(void)
+{
+	int		diff;
+	char	c;
+	int		expected_ret;
+	int		expected_errno;
+	int		got_ret;
+
+	c = '\0';
+	expected_ret = write(0, &c, -1);
+	expected_errno = errno;
+	errno = 0;
+	got_ret = ft_write(0, &c, -1);
+	diff = diff_i(errno, expected_errno);
+	diff += diff_i(got_ret, expected_ret);
+	return(!diff);
+}
+
+int unit_ft_write_errno_fd(void)
 {
 	int		diff;
 	char	c;
@@ -50,4 +68,9 @@ int	unit_ft_write_pipe(void)
 	return (!diff);
 }
 
-int (*tests_ft_write[])(void) = {&unit_ft_write_pipe, &unit_ft_write_errno, NULL};
+int (*tests_ft_write[])(void) = {
+	&unit_ft_write_pipe,
+	&unit_ft_write_errno_fd,
+	&unit_ft_write_errno_size,
+	NULL
+};
