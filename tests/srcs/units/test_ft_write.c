@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   test_ft_write.c                                  .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/09 17:42:10 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 18:19:09 by chamada     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_write.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/09 17:42:10 by chamada           #+#    #+#             */
+/*   Updated: 2020/05/21 16:38:58 by chamada          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include <tests.h>
@@ -48,7 +47,6 @@ int	unit_ft_write_pipe(void)
 	close(pipe_fd[0]);
 	got[len] = '\0';
 	diff += diff_s(got, expected);
-	diff += diff_ssize(ft_write(-1, expected, len), write(-1, expected, len));
 	return (!diff);
 }
 
