@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/01/26 16:34:23 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 19:44:43 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 20:53:47 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,15 @@ t_list	*lst_add_front(t_list **list, void *data)
 	new->data = data;
 	new->next = *list;
 	return ((*list = new));
+}
+
+void	lst_clear(t_list **list)
+{
+	t_list	*curr;
+
+	while ((curr = *list))
+	{
+		*list = curr->next;
+		free(curr);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:42:02 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 17:06:43 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 20:18:10 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int unit_ft_read_errno_size(void)
 	expected_ret = read(0, &c, -1);
 	expected_errno = errno;
 	got_ret = ft_read(0, &c, -1);
-	diff = diff_i(errno, expected_errno);
-	diff += diff_i(got_ret, expected_ret);
+	diff = diff_i("errno", errno, expected_errno);
+	diff += diff_i("return", got_ret, expected_ret);
 	return(!diff);
 }
 
@@ -41,8 +41,8 @@ int unit_ft_read_errno_fd(void)
 	expected_errno = errno;
 	errno = 0;
 	got_ret = ft_read(-1, &c, 1);
-	diff = diff_i(errno, expected_errno);
-	diff += diff_i(got_ret, expected_ret);
+	diff = diff_i("errno", errno, expected_errno);
+	diff += diff_i("return", got_ret, expected_ret);
 	return(!diff);
 }
 
@@ -55,9 +55,9 @@ int	unit_ft_read_pipe(void)
 	pipe(pipe_fd);
 	write(pipe_fd[1], "ABCDEF", 6);
 	close(pipe_fd[1]);
-	diff = diff_ssize(ft_read(pipe_fd[0], &c, 1), read(pipe_fd[0], &c, 1));
-	diff += diff_ssize(ft_read(pipe_fd[0], &c, 0), read(pipe_fd[0], &c, 0));
-	diff += diff_ssize(ft_read(pipe_fd[0], &c, -1), read(pipe_fd[0], &c, -1));
+	diff = diff_ssize("return", ft_read(pipe_fd[0], &c, 1), read(pipe_fd[0], &c, 1));
+	diff += diff_ssize("return", ft_read(pipe_fd[0], &c, 0), read(pipe_fd[0], &c, 0));
+	diff += diff_ssize("return", ft_read(pipe_fd[0], &c, -1), read(pipe_fd[0], &c, -1));
 	close(pipe_fd[0]);
 	return (!diff);
 }

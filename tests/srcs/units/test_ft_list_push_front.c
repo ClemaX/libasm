@@ -14,9 +14,12 @@ int	unit_ft_list_push_front_basic(void)
 		perror("Error");
 		return (1);
 	}
-	diff = diff_p(list->data, data);
-	diff += diff_p(list->next, NULL);
+	diff = diff_p("list->data", list->data, data);
+	diff += diff_p("list->next", list->next, NULL);
 	return (!diff);
 }
 
-int (*tests_ft_list_push_front[])(void) = {&unit_ft_list_push_front_basic, NULL};
+int (*tests_ft_list_push_front[])(void) = {
+	&unit_ft_list_push_front_basic,
+	NULL
+};
