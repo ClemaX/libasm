@@ -21,8 +21,6 @@ global	ft_write
 extern	ERRNO
 
 ft_write:					; RDI, RSI, RDX - RAX
-	test	rdx, rdx		; Check for negative length
-	js		.error			;
 	mov		rax, WRITE_CALL	; Write Call #
 	syscall					; Call the system
 	JERR	.error

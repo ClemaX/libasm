@@ -21,8 +21,6 @@ global	ft_read
 extern	__errno_location
 
 ft_read:					; RDI, RSI, RDX
-	test	rdx, rdx		; Check for negative length
-	js		.error			;
 	mov		rax, READ_CALL	; Read Call #
 	syscall					; Call the system
 	JERR	.error
