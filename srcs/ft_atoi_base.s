@@ -8,8 +8,9 @@ ft_atoi_base:					; RDI, RSI - RAX, RBX!, RCX, RDX
 	push	rbx					; Store RBX
 	push	rdi					; Store RDI
 	push	rsi					; Store RSI
-	sub		rcx,	rcx			; Clear RCX
 	sub		rax,	rax			; Clear RAX
+	sub		rbx,	rbx			; Clear RBX
+	sub		rcx,	rcx			; Clear RCX
 	lea		rdx,	[rel buff]	; 
 .validate:
 	mov		al,		[rsi + rcx]	; Read a char at RCX
@@ -29,7 +30,6 @@ ft_atoi_base:					; RDI, RSI - RAX, RBX!, RCX, RDX
 	cmp		rcx,	2			; Check minimum length
 	jb		.error				; Return if below
 	sub		al,		al			; Clear AL
-	sub		rbx,	rbx			; Clear RBX
 	sub		r10,	r10			; Set RSI to 0
 .prefix:
 	mov		bl,		[rdi]		; Read a char from RDI
