@@ -1,15 +1,15 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   test_ft_strcmp.c                                 .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/02/09 17:42:00 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/02/09 18:01:40 by chamada     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test_ft_strcmp.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/09 17:42:00 by chamada           #+#    #+#             */
+/*   Updated: 2020/05/21 17:27:44 by chamada          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
+
 
 #include <tests.h>
 
@@ -33,4 +33,16 @@ int	unit_ft_strcmp_rand(void)
 	return (!diff);
 }
 
-int (*tests_ft_strcmp[])(void) = {&unit_ft_strcmp_rand, NULL};
+int	unit_ft_strcmp_empty(void)
+{
+	static const char	*src = "";
+	static const char	*dst = "";
+
+	return (!diff_bool("sign", ft_strcmp(dst, src) < 0, strcmp(dst, src) < 0));
+}
+
+int (*tests_ft_strcmp[])(void) = {
+	&unit_ft_strcmp_empty,
+	&unit_ft_strcmp_rand,
+	NULL
+};
