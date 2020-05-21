@@ -2,6 +2,7 @@ NAME	=	libasm.a
 SRCDIR	=	srcs
 OBJDIR	=	objs
 ASM		=	nasm
+AFLAGS	=
 CC		=	/usr/bin/clang
 CFLAGS	=	-Wall -Wextra -Werror
 AR		=	/usr/bin/ar
@@ -35,7 +36,7 @@ $(OBJDIR):
 
 $(OBJDIR)/%.o: $(SRCDIR)/%.s $(OBJDIR) Makefile
 	@printf "%-3s $<\n" ASM
-	@$(ASM) $(FLAGS) -f$(FORMAT) $< -o $@
+	@$(ASM) $(FLAGS) $(AFLAGS) -f$(FORMAT) $< -o $@
 
 clean:
 	@printf "%-3s $(OBJDIR)\n" RM
