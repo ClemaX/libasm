@@ -1,14 +1,13 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   tests.h                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/14 06:49:04 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/03/11 16:25:30 by chamada     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   tests.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/14 06:49:04 by chamada           #+#    #+#             */
+/*   Updated: 2020/05/21 19:46:56 by chamada          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #ifndef TESTS_H
@@ -34,7 +33,7 @@
 # define FAIL	RED"✗"RESET
 # define BULLET	CYAN"▶"RESET
 
-int				run_tests(char *label, int (*tests[])());
+int				run_tests(char *label, int (*tests[])(), int iterations);
 
 unsigned int	ft_rand(unsigned int min, unsigned int max);
 char			*rand_key(int len);
