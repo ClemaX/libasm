@@ -12,6 +12,24 @@
 
 #include <tests.h>
 
+int	unit_ft_atoi_base_error_base_space(void)
+{
+	static const int	expected = 0;
+	int					got;
+	int					diff;
+
+	got = ft_atoi_base("111", "01\t2");
+	diff = diff_i("base: 01\\t2 return", got, expected);
+	got = ft_atoi_base("11", "01\r2");
+	diff += diff_i("base: 01\\r2 return", got, expected);
+	got = ft_atoi_base("1", "01 2");
+	diff += diff_i("base: 01 2 return", got, expected);
+	got = ft_atoi_base("1", "01\n2");
+	diff += diff_i("base: 01\\n2 return", got, expected);
+	return (!diff);
+}
+
+
 int	unit_ft_atoi_base_error_base_signs(void)
 {
 	static const int	expected = 0;
@@ -53,15 +71,31 @@ int	unit_ft_atoi_base_rand_hex(void)
 	int					rand;
 
 	rand = ft_rand(0, 0xffffffff);
-	snprintf(src, len, "-+ -\t \t%X", rand);
+	snprintf(src, len, "\r \t-+-%X", rand);
 	dest = ft_atoi_base(src, BASE_HEX);
 	return (!diff_i("hex return", dest, rand));
 }
 
+int	unit_ft_atoi_base_empty(void) {
+	static const int	expected = 0;
+	int					got;
+	int					diff;
+
+	got = ft_atoi_base("", "01234");
+	diff = diff_i("empty string return", got, expected);
+	got = ft_atoi_base("01234", "");
+	diff += diff_i("empty base return", got, expected);
+	got = ft_atoi_base("", "");
+	diff += diff_i("empty strings return", got, expected);
+	return (!diff);
+}
+
 int (*tests_ft_atoi_base[])(void) = {
+	&unit_ft_atoi_base_empty,
 	&unit_ft_atoi_base_rand_hex,
 	&unit_ft_atoi_base_error_base_dup,
 	&unit_ft_atoi_base_error_base_len,
 	&unit_ft_atoi_base_error_base_signs,
+	&unit_ft_atoi_base_error_base_space,
 	NULL
 };

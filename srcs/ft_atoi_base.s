@@ -18,6 +18,13 @@ ft_atoi_base:					; RDI, RSI - RAX, RBX!, RCX, RDX
 	je		.error				; Cannot have signs
 	cmp		al,		'-'			;
 	je		.error				; Cannot have signs
+	cmp		al,		9			; '\t'
+	jl		.valid				; Not a whitespace
+	cmp		al,		13			; '\r'
+	jle		.error				; Cannot have whitespace
+	cmp		al,		' '
+	je		.error				; Cannot have space
+.valid:
 	mov		bl,		[rdx + rax]	; Load byte according to character
 	cmp		bl,		-1			; Check if character has occurred
 	jne		.error				; Cannot have duplicates
@@ -33,21 +40,25 @@ ft_atoi_base:					; RDI, RSI - RAX, RBX!, RCX, RDX
 	sub		r10,	r10			; Set RSI to 0
 .prefix:
 	mov		bl,		[rdi]		; Read a char from RDI
-	cmp		bl,		'+'			; Skip '+' sign
-	je		.skip
 	cmp		bl,		9			; Skip whitespace
 	jl		.sign
 	cmp		bl,		13
-	jl		.skip				;
+	jle		.skip				;
 	cmp		bl,		' '
 	je		.skip				;
 .sign:
+	cmp		bl,		'+'			; Skip plus sign
+	je		.skip_sign
 	cmp		bl,		'-'			; Continue if there is no sign 
 	jne		.root
 	inc		r10					; Increment '-' counter 
+.skip_sign:
+	inc		rdi
+	mov		bl,		[rdi]		; Read a char from RDI
+	jmp		.sign
 .skip:
 	inc		rdi					; Increment RDI
-	jmp		.prefix				; 
+	jmp		.prefix
 .root:
 	mov		rsi,	rdx			; Set RSI to RDX
 .convert:
