@@ -1,35 +1,39 @@
 /* ************************************************************************** */
-/*                                                          LE - /            */
-/*                                                              /             */
-/*   utils.c                                          .::    .:/ .      .::   */
-/*                                                 +:+:+   +:    +:  +:+:+    */
-/*   By: chamada <chamada@student.le-101.fr>        +:+   +:    +:    +:+     */
-/*                                                 #+#   #+    #+    #+#      */
-/*   Created: 2020/01/26 16:34:23 by chamada      #+#   ##    ##    #+#       */
-/*   Updated: 2020/03/11 17:07:13 by chamada     ###    #+. /#+    ###.fr     */
-/*                                                         /                  */
-/*                                                        /                   */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/01/26 16:34:23 by chamada           #+#    #+#             */
+/*   Updated: 2020/05/21 20:53:47 by chamada          ###   ########lyon.fr   */
+/*                                                                            */
 /* ************************************************************************** */
 
 #include <tests.h>
 
-int		run_tests(char *label, int (*tests[])(void))
+int		run_tests(char *label, int (*tests[])(void), int iterations)
 {
 	int	ret;
 	int err;
 	int i;
+	int test_i;
 
 	printf("%s %*s\t",
 		BULLET, LBL_FW, label);
-	i = 0;
+	test_i = 0;
 	err = 0;
-	while (tests[i])
+	while (tests[test_i])
 	{
-		ret = (*tests[i])();
-		printf(ret ? PASS : FAIL);
-		err += !ret;
-		i++;
-		if (tests[i])
+		i = 0;
+		while (i++ < iterations)
+		{
+			ret = (*tests[test_i])();
+			printf(ret ? PASS : FAIL);
+			err += !ret;
+		}
+		test_i++;
+		if (tests[test_i])
 			printf(" ");
 	}
 	printf("\n");
@@ -45,4 +49,15 @@ t_list	*lst_add_front(t_list **list, void *data)
 	new->data = data;
 	new->next = *list;
 	return ((*list = new));
+}
+
+void	lst_clear(t_list **list)
+{
+	t_list	*curr;
+
+	while ((curr = *list))
+	{
+		*list = curr->next;
+		free(curr);
+	}
 }

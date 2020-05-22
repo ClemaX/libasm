@@ -15,8 +15,8 @@ int unit_ft_list_push_front_existing(void)
 		perror("Error");
 		return (1);
 	}
-	diff = diff_p(list->next, &elem);
-	diff += diff_p(list->data, &data);
+	diff = diff_p("list->next", list->next, &elem);
+	diff += diff_p("list->data", list->data, &data);
 	return (!diff);
 }
 
@@ -34,8 +34,8 @@ int	unit_ft_list_push_front_basic(void)
 		perror("Error");
 		return (1);
 	}
-	diff = diff_p(list->data, data);
-	diff += diff_p(list->next, NULL);
+	diff = diff_p("list->data", list->data, data);
+	diff += diff_p("list->next", list->next, NULL);
 	return (!diff);
 }
 

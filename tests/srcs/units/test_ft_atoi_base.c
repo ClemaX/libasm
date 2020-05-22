@@ -6,10 +6,9 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/03 20:50:28 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 18:43:28 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 20:29:13 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <tests.h>
 
@@ -19,10 +18,10 @@ int	unit_ft_atoi_base_error_base_signs(void)
 	int					got;
 	int					diff;
 
-	got = ft_atoi_base("11", "01234+");
-	diff = diff_i(got, expected);
-	got = ft_atoi_base("1", "01234-");
-	diff += diff_i(got, expected);
+	got = ft_atoi_base("11", BASE_PLUS);
+	diff = diff_i("base: "BASE_PLUS" return", got, expected);
+	got = ft_atoi_base("1", BASE_MINUS);
+	diff += diff_i("base: "BASE_MINUS" return", got, expected);
 	return (!diff);
 }
 
@@ -33,7 +32,7 @@ int	unit_ft_atoi_base_error_base_len(void)
 	int					got;
 
 	got = ft_atoi_base("1", base);
-	return (!diff_i(got, expected));
+	return (!diff_i("invalid base return", got, expected));
 }
 
 int	unit_ft_atoi_base_error_base_dup(void)
@@ -43,21 +42,20 @@ int	unit_ft_atoi_base_error_base_dup(void)
 	int					got;
 
 	got = ft_atoi_base("1", base);
-	return (!diff_i(got, expected));
+	return (!diff_i("invalid base return", got, expected));
 }
 
 int	unit_ft_atoi_base_rand_hex(void)
 {
 	static const int	len = 32;
-	static const char	*base = "0123456789ABCDEF";
 	char				src[len];
 	int					dest;
 	int					rand;
 
 	rand = ft_rand(0, 0xffffffff);
 	snprintf(src, len, "-+ -\t \t%X", rand);
-	dest = ft_atoi_base(src, base);
-	return (!diff_i(dest, rand));
+	dest = ft_atoi_base(src, BASE_HEX);
+	return (!diff_i("hex return", dest, rand));
 }
 
 int (*tests_ft_atoi_base[])(void) = {

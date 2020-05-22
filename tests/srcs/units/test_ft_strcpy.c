@@ -6,10 +6,9 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:42:21 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 17:42:43 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 20:23:58 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
-
 
 #include <tests.h>
 
@@ -26,7 +25,7 @@ int	unit_ft_strcpy_rand(void)
 		return (1);
 	}
 	ft_strcpy(dst, src);
-	diff = diff_s(dst, src);
+	diff = diff_s("return", dst, src);
 	free(src);
 	free(dst);
 	return (!diff);
@@ -41,7 +40,7 @@ int	unit_ft_strcpy_empty(void)
 
 	dst = malloc(sizeof(*dst) * (len + 1));
 	ft_strcpy(dst, src);
-	diff = diff_s(dst, src);
+	diff = diff_s("return", dst, src);
 	free(dst);
 	return (!diff);
 }
@@ -59,7 +58,7 @@ int	unit_ft_strcpy_basic(void)
 		return (1);
 	}
 	ft_strcpy(dst, src);
-	diff = diff_s(dst, src);
+	diff = diff_s("return", dst, src);
 	free(dst);
 	return (!diff);
 }

@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:42:10 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 17:08:15 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 20:23:01 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ int unit_ft_write_errno_size(void)
 	expected_errno = errno;
 	errno = 0;
 	got_ret = ft_write(0, &c, -1);
-	diff = diff_i(errno, expected_errno);
-	diff += diff_i(got_ret, expected_ret);
+	diff = diff_i("errno", errno, expected_errno);
+	diff += diff_i("return", got_ret, expected_ret);
 	return(!diff);
 }
 
@@ -43,8 +43,8 @@ int unit_ft_write_errno_fd(void)
 	expected_errno = errno;
 	errno = 0;
 	got_ret = ft_write(-1, &c, 1);
-	diff = diff_i(errno, expected_errno);
-	diff += diff_i(got_ret, expected_ret);
+	diff = diff_i("errno", errno, expected_errno);
+	diff += diff_i("return", got_ret, expected_ret);
 	return(!diff);
 }
 
@@ -57,14 +57,14 @@ int	unit_ft_write_pipe(void)
 	int					pipe_fd[2];
 
 	pipe(pipe_fd);
-	diff = diff_ssize(ft_write(pipe_fd[1], expected, len), write(pipe_fd[1], expected, len));
-	diff += diff_ssize(ft_write(pipe_fd[1], expected, 0), write(pipe_fd[1], expected, 0));
-	diff += diff_ssize(ft_write(pipe_fd[1], expected, -1), write(pipe_fd[1], expected, -1));
+	diff = diff_ssize("return", ft_write(pipe_fd[1], expected, len), write(pipe_fd[1], expected, len));
+	diff += diff_ssize("return", ft_write(pipe_fd[1], expected, 0), write(pipe_fd[1], expected, 0));
+	diff += diff_ssize("return", ft_write(pipe_fd[1], expected, -1), write(pipe_fd[1], expected, -1));
 	close(pipe_fd[1]);
-	diff_ssize(read(pipe_fd[0], got, len), len);
+	diff_ssize("length", read(pipe_fd[0], got, len), len);
 	close(pipe_fd[0]);
 	got[len] = '\0';
-	diff += diff_s(got, expected);
+	diff += diff_s("wrote", got, expected);
 	return (!diff);
 }
 

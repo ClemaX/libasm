@@ -6,7 +6,7 @@
 /*   By: chamada <chamada@student.le-101.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/09 17:41:56 by chamada           #+#    #+#             */
-/*   Updated: 2020/05/21 17:39:28 by chamada          ###   ########lyon.fr   */
+/*   Updated: 2020/05/21 20:24:43 by chamada          ###   ########lyon.fr   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int unit_ft_strlen_rand(void)
 		perror("Error");
 		return (1);
 	}
-	diff = diff_size(ft_strlen(str), strlen(str));
+	diff = diff_size(str, ft_strlen(str), strlen(str));
 	free(str);
 	return (!diff);
 }
@@ -33,14 +33,14 @@ int unit_ft_strlen_zero(void)
 {
 	char	*str = "";
 
-	return (!diff_size(ft_strlen(str), strlen(str)));
+	return (!diff_size(str, ft_strlen(str), strlen(str)));
 }
 
 int	unit_ft_strlen_basic(void)
 {
 	char	*str = "Thelengthistwentyone!";
 
-	return (!diff_size(ft_strlen(str), strlen(str)));
+	return (!diff_size(str, ft_strlen(str), strlen(str)));
 }
 
 int (*tests_ft_strlen[])(void) = {

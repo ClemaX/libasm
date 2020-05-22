@@ -21,25 +21,26 @@ static int check_list(t_list *list, void *expected_data, int expected_len)
 	err = 0;
 	while (curr)
 	{
-		err |= diff_p(curr->data, expected_data);
+		err |= diff_p("data", curr->data, expected_data);
 		curr = curr->next;
 		len++;
 	}
-	err |= diff_i(len, expected_len);
+	err |= diff_i("length", len, expected_len);
 	return (!err);
 }
 
 int	unit_ft_list_remove_if_rand(void)
 {
-	t_list				*list;
-	int					len;
-	int					ref;
-	int					got;
-	int					pos;
-	int					i;
+	t_list	*list;
+	int		len;
+	int		ref;
+	int		got;
+	int		pos;
+	int		i;
+	int		diff;
 
 	list = NULL;
-	len = ft_rand(0, 32);
+	len = ft_rand(1, 256);
 	ref = ft_rand(0, UINT32_MAX);
 	got = ref;
 	pos = ft_rand(0, len);
@@ -51,7 +52,13 @@ int	unit_ft_list_remove_if_rand(void)
 		i++;
 	}
 	ft_list_remove_if(&list, &ref, &test_cmp, &test_free);
-	return (!diff_i(got, 0) && check_list(list, &pos, len - 1));
+	diff = diff_i("data was not removed", got, 0);
+	diff += !check_list(list, &pos, len - 1);
+	lst_clear(&list);
+	return (!diff);
 }
 
-int (*tests_ft_list_remove_if[])(void) = {&unit_ft_list_remove_if_rand, NULL};
+int (*tests_ft_list_remove_if[])(void) = {
+	&unit_ft_list_remove_if_rand,
+	NULL
+};
