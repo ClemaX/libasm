@@ -48,6 +48,8 @@ fclean:			clean
 
 re:				fclean all
 
+bonus:			$(NAME)
+
 test:			all $(TSTSRCS)
 	@printf "%-3s $(TSTSRCS)\n" CC
 	@$(CC) $(CFLAGS) $(TSTSRCS) -I$(TSTINC) -L. -lasm -o test
